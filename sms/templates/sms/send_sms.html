@@ -7,16 +7,61 @@
     <title>Send SMS</title>
     <!-- Include Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .custom-alert {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 16px;
+            display: block;
+            z-index: 1000;
+            word-wrap: break-word;
+        }
+
+        .custom-alert-success {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .custom-alert-warning {
+            background-color: #ffc107;
+            color: black;
+        }
+
+        .custom-alert-error {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .custom-alert button {
+            background: none;
+            border: none;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">
     <div class="min-h-screen flex items-center justify-center">
+        {% if message %}
+        <div id="custom-alert" class="text-center py-4 px-2 custom-alert custom-alert-{{ message_type }}">
+            <span id="alert-message" class="text-center">{{message}}</span><br>
+            <button class="mt-4" onclick="closeAlert()">Close</button>
+        </div>
+        {% endif %}
         <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
             <h1 class="text-2xl font-semibold text-center text-gray-800 mb-6">Broadcast SMS</h1>
             <form method="POST">
                 {% csrf_token %}
 
                 <div class="mb-4">
+
                     <label for="message" class="block text-gray-700 text-lg font-medium">Message:</label>
                     <textarea id="message" name="message" rows="4" cols="50"
                         class="w-full p-3 mt-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
@@ -36,6 +81,13 @@
             </form>
         </div>
     </div>
+
+    <script>
+        // Close alert when the button is clicked
+        function closeAlert() {
+            document.getElementById("custom-alert").style.display = "none";
+        }
+    </script>
 </body>
 
 </html>

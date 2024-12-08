@@ -5,12 +5,14 @@ from .models import SMS
 from django.conf import settings
 
 def send_sms(request):
+    context = {} 
     if request.method == 'POST':
         recipient = "+639121769168"
         message = request.POST.get('message')
 
         # Send SMS using Twilio
         client = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
+        
         try:
             sms = client.messages.create(
                 body=message,
@@ -19,11 +21,13 @@ def send_sms(request):
             )
             # Save to the database
             SMS.objects.create(recipient=recipient, message=message)
-            return JsonResponse({'success': True, 'message': 'SMS sent successfully!'})
+            context['message'] = 'SMS sent successfully!'
+            context['message_type'] = 'success'
         except Exception as e:
-            return JsonResponse({'success': False, 'error': str(e)})
+            context['message'] = 'Failed to send SMS.'
+            context['message_type'] = 'error'
 
-    return render(request, 'sms/send_sms.html')
+    return render(request, 'sms/send_sms.html', context)
 
 
 def home(request):
