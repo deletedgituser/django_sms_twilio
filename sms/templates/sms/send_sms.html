@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send SMS</title>
+    <!-- Include Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+    <div class="min-h-screen flex items-center justify-center">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+            <h1 class="text-2xl font-semibold text-center text-gray-800 mb-6">Broadcast SMS</h1>
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="mb-4">
+                    <label for="message" class="block text-gray-700 text-lg font-medium">Message:</label>
+                    <textarea id="message" name="message" rows="4" cols="50"
+                        class="w-full p-3 mt-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        placeholder="Type your message here..." required></textarea>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit"
+                        class="bg-blue-500 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Send
+                        SMS</button>
+
+                </div>
+                <div class="text-center text-sm text-blue-400 my-2">
+                    <a class="hover:text-blue-900" href="{% url 'home' %}">back to home</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
