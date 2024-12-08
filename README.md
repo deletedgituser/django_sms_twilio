@@ -36,17 +36,18 @@ Move into the project directory:
 ```bash
 
 cd sms-twilio-django
+```
 ### 3. Set Up the Virtual Environment
 Create and activate a virtual environment using pipenv (or any other virtual environment tool of your choice). Install the virtual environment dependencies:
 
 ```bash
 
 pipenv install
-Activate the virtual environment:
-
-bash
+### Activate the virtual environment:
+```bash
 
 pipenv shell
+```
 ## Python Setup
 If you haven’t already set up Python and Pipenv, refer to the steps below.
 
@@ -60,21 +61,21 @@ To install Pipenv globally, run the following command:
 ```bash
 
 pip install pipenv
-Django Setup
-Install Django
+## Django Setup
+### Install Django
 Install Django using pipenv:
-
+```
 ```bash
 
 pipenv install django
 Migrate the Database
 Run the following commands to set up the database for the project:
-
+```
 ```bash
 
 python manage.py makemigrations
 python manage.py migrate
-Install Dependencies
+## Install Dependencies
 Ensure the required dependencies are installed. Run the following commands inside the virtual environment:
 
 ### Install Twilio to send SMS messages:
@@ -83,23 +84,23 @@ Ensure the required dependencies are installed. Run the following commands insid
 
 pipenv install twilio
 Install python-dotenv to securely load environment variables:
-
+```
 ```bash
 
 pipenv install python-dotenv
-
-### Project Configuration
- Add Twilio Credentials
+```
+## Project Configuration
+### Add Twilio Credentials
 Create a .env file in the project root directory.
 Add your Twilio credentials (get them from your Twilio account):
 plaintext
-
+```
 TWILIO_ACCOUNT_SID=your_account_sid_here
 TWILIO_AUTH_TOKEN=your_auth_token_here
 TWILIO_PHONE_NUMBER=your_twilio_phone_number_here
 Configure Django Settings
 In sms_twilio/settings.py, load these credentials:
-
+```
 ```python
 
 from dotenv import load_dotenv
@@ -112,8 +113,8 @@ TWILIO_AUTH_TOKEN = os.getenv('TWILIO_AUTH_TOKEN')
 TWILIO_PHONE_NUMBER = os.getenv('TWILIO_PHONE_NUMBER')
 ## Creating the SMS App
 ## Create the SMS Model
-Define the model for the SMS app in sms/models.py:
-
+#### Define the model for the SMS app in sms/models.py:
+```
 ```python
 
 from django.db import models
@@ -125,12 +126,14 @@ class SMS(models.Model):
 
     def __str__(self):
         return f"SMS to {self.to_number} at {self.sent_at}"
-Run migrations to update the database schema:
+```
+## Run migrations to update the database schema:
 
-bash
+```bash
 
 python manage.py makemigrations sms
 python manage.py migrate
+```
 ## Create Views and URLs
 Define the logic for sending SMS in sms/views.py. Then set up the URLs in sms/urls.py and include them in sms_twilio/urls.py.
 
@@ -144,7 +147,7 @@ Refer to the Creating the SMS App section in the main documentation for detailed
 python manage.py runserver
 Access the application in your browser at:
 http://127.0.0.1:8000/sms/send/
-
+```
 ## Testing
 ### To test the application:
 
