@@ -28,6 +28,7 @@ First, clone this repository from GitHub to your local machine using the followi
 ```bash
 git clone https://github.com/your-username/sms-twilio-django.git
 Replace your-username with your GitHub username.
+```
 
 ### 2. Navigate to the Project Directory
 Move into the project directory:
