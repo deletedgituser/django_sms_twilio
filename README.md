@@ -61,20 +61,23 @@ To install Pipenv globally, run the following command:
 ```bash
 
 pip install pipenv
+```
 ## Django Setup
 ### Install Django
 Install Django using pipenv:
-```
+
 ```bash
 
 pipenv install django
-Migrate the Database
-Run the following commands to set up the database for the project:
 ```
+### Migrate the Database
+Run the following commands to set up the database for the project:
+
 ```bash
 
 python manage.py makemigrations
 python manage.py migrate
+```
 ## Install Dependencies
 Ensure the required dependencies are installed. Run the following commands inside the virtual environment:
 
@@ -83,8 +86,9 @@ Ensure the required dependencies are installed. Run the following commands insid
 ```bash
 
 pipenv install twilio
-Install python-dotenv to securely load environment variables:
 ```
+### Install python-dotenv to securely load environment variables:
+
 ```bash
 
 pipenv install python-dotenv
@@ -98,9 +102,10 @@ plaintext
 TWILIO_ACCOUNT_SID=your_account_sid_here
 TWILIO_AUTH_TOKEN=your_auth_token_here
 TWILIO_PHONE_NUMBER=your_twilio_phone_number_here
-Configure Django Settings
-In sms_twilio/settings.py, load these credentials:
 ```
+### Configure Django Settings
+In sms_twilio/settings.py, load these credentials:
+
 ```python
 
 from dotenv import load_dotenv
@@ -111,10 +116,10 @@ load_dotenv()
 TWILIO_ACCOUNT_SID = os.getenv('TWILIO_ACCOUNT_SID')
 TWILIO_AUTH_TOKEN = os.getenv('TWILIO_AUTH_TOKEN')
 TWILIO_PHONE_NUMBER = os.getenv('TWILIO_PHONE_NUMBER')
+```
 ## Creating the SMS App
 ## Create the SMS Model
 #### Define the model for the SMS app in sms/models.py:
-```
 ```python
 
 from django.db import models
